@@ -1,11 +1,15 @@
 import React from 'react'
 
-export default function Search() {
+export default async function Card() {
+
+    const data = await fetch('https://api.vercel.app/blog');
+    const cards = await data.json();
+
     return (
         <>
-            <div>Search your Sol Ring</div>
-
-            <input type="text" />
+            {/* {cards.map((card) => (
+                <div key={card.id}></div>
+            ))} */}
         </>
     )
 }
