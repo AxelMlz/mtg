@@ -5,24 +5,20 @@ import { autocompleteSearchResults, cardFetch } from '@/app/actions'
 
 export default function searchResult() {
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("sol");
     const [searchedCard, setSearchedCard] = useState("");
 
 
+    autocompleteSearchResults(query);
     cardFetch;
     console.log(cardFetch);
-
-
     let randomCard = cardFetch;
-    console.log(randomCard);
-
     // setSearchedCard(randomCard);
     const updateValue = (e: any) => {
         setQuery(e.target.value);
-        autocompleteSearchResults(query);
     };
 
-    const searchParams = ["Name", "Set"]
+    // const searchParams = ["Name", "Set"]
     return (
         <>
             <div>Search by:</div>
