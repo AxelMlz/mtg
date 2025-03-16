@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 // import { randomCard } from '@/app/actions';
 
-export default function surpriseCard() {
+export default function SurpriseCard() {
 
     const [surpriseCardData, setSurpriseCardData] = useState<object>();
     const [surpriseCardName, setSurpriseCardName] = useState<string>();
@@ -23,11 +23,16 @@ export default function surpriseCard() {
         return card;
     }
 
+    useEffect(() => {
+        randomCard();
+    }, [])
+
     return (
         <>
             <div>
 
-                <button onClick={randomCard} type="button" className="text-white bg-gradient-to-br from-red-400 to-pink-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"> Random Card</button>
+                <button onClick={randomCard} className="rounded-full bg-gradien border border-slate-800 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button"> Random Card</button>
+
                 <h1>The surprise card is {surpriseCardName}</h1>
                 {/* <h1></h1> */}
                 <img src={surpriseCardImage} alt={surpriseCardName} />

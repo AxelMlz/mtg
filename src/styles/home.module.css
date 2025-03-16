@@ -1,0 +1,13 @@
+/* @import 'tailwindcss'; */
+
+body {
+  margin: 0;
+  padding: 1rem;
+}
+
+/* :global {
+  .marginsContainer {
+    width: 90%;
+    margin: auto;
+  }
+} */

@@ -6,7 +6,7 @@ export async function autocompleteSearchResults(query: string) {
         throw new Error(`HTTP error! status: ${data.status}`);
     }
     const cards = await data.json();
-    console.log(cards.data);
+    // console.log(cards.data);
     return cards.data;
 };
 export async function cardFetch() {
