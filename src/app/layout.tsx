@@ -16,10 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <>
+      {/* <NavbarWithSubmenu /> */}
       <Navbar />
       <html lang="en">
 
-        <body className="max-w-7xl mx-auto p-4">{children}</body>
+        <body className={styles.container}>{children}</body>
       </html>
     </>
   );

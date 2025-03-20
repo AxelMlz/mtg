@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { autocompleteSearchResults, cardFetch } from '@/app/actions'
+import { autocompleteSearchResults, cardFetch } from '@/actions'
 
 export default function searchResult() {
 

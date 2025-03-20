@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 
-export default function NavbarComponent() {
+export default function NavbarWithSubmenu() {
     const [openNav, setOpenNav] = React.useState(false);
 
     React.useEffect(() => {
