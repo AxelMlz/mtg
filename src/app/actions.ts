@@ -38,7 +38,7 @@ export async function fetchCard(id: string) {
         throw new Error(`HTTP error! status: ${data.status}`);
     }
     const card = await data.json();
-    // console.log(card);
+    console.log(card);
     // redirect(`/card/${id}`);
     return card;
 
