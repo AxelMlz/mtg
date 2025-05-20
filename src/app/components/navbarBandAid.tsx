@@ -8,23 +8,28 @@ import Link from 'next/link';
 
 
 export default function NavbarBandAid() {
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState('');
     const [results, setResults] = useState<string[]>([]);
-    const [selectedResult, setSelectedResult] = useState<string[]>([]);
 
-    let cardInfos
+    function search() {
+
+        async () => {
+            if (query !== '') {
+                const cardInfos = await fetchCardId(query);
+                // Traiter les infos ici si besoin
+            }
+        };
+    }
     const handleSearch = async () => {
-        // setSelectedResult(query);
-        // console.log("Recherche exécutée avec :", query);
-        if (query !== "") {
-            let cardInfos = await fetchCardId(query);
-            // setSelectedResult(cardInfos);
+        if (query !== '') {
+            const cardInfos = await fetchCardId(query);
+            // Traiter les infos ici si besoin
         }
     };
-    // console.log(selectedResult)
+
     useEffect(() => {
         const fetchResults = async () => {
-            if (query.trim() === "") {
+            if (query.trim() === '') {
                 setResults([]);
                 return;
             }
@@ -33,37 +38,45 @@ export default function NavbarBandAid() {
             setResults(searchResult);
         };
 
-        const debounce = setTimeout(fetchResults, 300); // Évite trop d'appels
-
-
+        const debounce = setTimeout(fetchResults, 300);
         return () => clearTimeout(debounce);
-    }, [query]); // Exécute l'effet à chaque changement de query
-
-
+    }, [query]);
 
     return (
-        <div id="navbar" className={styles.navbar}>
+        <>
+            <div id="navbar" className={styles.navbar}>
 
-            <a className="active" href="/">Home</a>
-            <a href="/cards">Cards</a>
-            <a href="/card/random">Random Card</a>
-
-            <div id="search-container" className={styles.search_container}>
-                <form action="">
-
-                    <input type="search" list="search-results" placeholder="Search..." value={query} name="search" id="search" onChange={(e) => setQuery(e.target.value)} className="border p-2 w-full"></input>
-                    <datalist id="search-results">
-                        {results.map((result, index) => (
-                            <option key={index} value={result} />
-
-                        ))}
-                    </datalist>
-                </form>
-                <button onClick={handleSearch} className="rounded-full bg-gradien border border-slate-800 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button" > Search card</button>
+                <a className="active" href="/">Home</a>
+                <a href="/cards">Cards</a>
+                <a href="/card/random">Random Card</a>
 
 
+                <div className='search_container'>
+                    <form
+                        className="mx-auto flex max-w-3xl flex-col gap-2 sm:flex-row sm:items-center"
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            handleSearch();
+                        }}
+                    >
+                        <input
+                            type="search"
+                            list="search-results"
+                            placeholder="Search cards..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            className="w-full flex-grow rounded-full border border-transparent bg-gray-100 px-4 py-2 text-sm text-gray-800 shadow-inner outline-none transition focus:border-blue-700 focus:bg-white focus:ring-2 focus:ring-blue-400"
+                        />
+                        <datalist id="search-results">
+                            {results.map((result, index) => (
+                                <option key={index} value={result} onClick={search} />
+                            ))}
+                        </datalist>
+
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
